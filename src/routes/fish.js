@@ -1,15 +1,19 @@
+import { getConnection, insertDocument, fetchDocuments } from './_database'; 
 
-const db = [] 
+const collection = 'test';
 
 export async function get(req, res, next) {
-
+  const db = await getConnection()
+  const docs = await fetchDocuments(db, collection);
   res.setHeader('Content-Type', 'application/json');
-  res.end(JSON.stringify(db));
+  res.end(JSON.stringify(docs));
 }
 
 export async function post(req, res, next) {
+  console.log(JSON.stringify(req.body, null, 2));
   const time = Date.now();
-  db.push(time);
+  const db = await getConnection()
+  const result = await insertDocument(db, collection, req.body); 
   const status = { status: 'OK' }
   res.setHeader('Content-Type', 'application/json');
   res.end(JSON.stringify(status));
