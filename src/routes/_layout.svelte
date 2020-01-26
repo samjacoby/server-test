@@ -1,5 +1,5 @@
 <script>
-	import Nav from '../components/Nav.svelte';
+	//import Nav from '../components/Nav.svelte';
 
 	export let segment;
 </script>
@@ -14,8 +14,6 @@
 		box-sizing: border-box;
 	}
 </style>
-
-<Nav {segment}/>
 
 <main>
 	<slot></slot>
